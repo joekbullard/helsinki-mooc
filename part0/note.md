@@ -25,12 +25,12 @@ sequenceDiagram
     
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
     activate server
-    server-->>browser: [{ "content": "form data is sent with HTTP Post", "date": "2023-05-31" }, ... ]
+    server-->>browser: data.json
     deactivate server
     
     browser->>server: GET https://studies.cs.helsinki.fi/favicon.ico
     activate server
-    server-->>browser: HTML code
+    server-->>browser: HTML document
     deactivate server
 
 ```    
