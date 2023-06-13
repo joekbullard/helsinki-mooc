@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const Header = (props) => <h1>{props.title}</h1>;
+const Header = ({ title }) => <h1>{title}</h1>;
 
 const Button = (props) => {
   return (
@@ -10,28 +10,35 @@ const Button = (props) => {
   )
 };
 
-// const increaseByOne = ({ setvalue, value }) => {
-//   return setvalue(value + 1)
-// }
 
 const Statistics = ({ good, neutral, bad, total, average, positive }) => {
-  
-  if (total===0) {
+
+  if (total === 0) {
     return <p>No feedback given</p>;
   }
   return (
-    <>
-      <StatisticLine text="Good" count={good} />
-      <StatisticLine text="Neutral" count={neutral} />
-      <StatisticLine text="Bad" count={bad} />
-      <StatisticLine text='Total' count={total} />
-      <StatisticLine text='Average' count={average.toFixed(2)} />
-      <StatisticLine text='Positive' count={positive.toFixed(2)} extra='%' />
-    </>
+    <table>
+      <tbody>
+        <StatisticLine text="Good" count={good} />
+        <StatisticLine text="Neutral" count={neutral} />
+        <StatisticLine text="Bad" count={bad} />
+        <StatisticLine text='Total' count={total} />
+        <StatisticLine text='Average' count={average.toFixed(2)} />
+        <StatisticLine text='Positive' count={positive.toFixed(2)} extra='%' />
+      </tbody>
+    </table>
   )
 }
 
-const StatisticLine = (props) => <p>{props.text}: {props.count} {props.extra}</p>;
+const StatisticLine = ({ text, count, extra }) => {
+  return (
+    <tr>
+      <td>{text}:</td>
+      <td>{count}</td>
+      <td>{extra}</td>
+    </tr>
+  )
+}
 
 const App = () => {
   // save clicks of each button to its own state
@@ -40,7 +47,7 @@ const App = () => {
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
 
-  
+
 
   const increaseGoodByOne = () => setGood(good + 1)
   const increaseNeutralByOne = () => setNeutral(neutral + 1)
