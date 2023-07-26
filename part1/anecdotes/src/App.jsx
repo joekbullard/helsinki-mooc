@@ -2,10 +2,6 @@ import { useState } from 'react'
 
 const Display = ({ title }) => <h1>{title}</h1>;
 
-// button component
-
-// display component
-
 const Anecdote = ({ anecdote, votes }) => {
   return (
     <>
@@ -32,20 +28,20 @@ const App = () => {
     'The only way to go fast, is to go well.'
   ]
 
-
-
-  const [selected, setSelected] = useState(0)
-
+  // return length of array and generate empty array
   const array_length = anecdotes.length
-
   const initialVotes = new Array(array_length).fill(0)
 
+  // set states for selecting anecdote and tracking votes
+  const [selected, setSelected] = useState(0);
   const [votes, setVote] = useState(initialVotes);
 
+  // generate random integer using Math.floor function
   function getRandomInt(max_value) {
     return Math.floor(Math.random() * max_value);
   };
 
+  // use map to handle vote count increase
   function handleVoteIncrement(index) {
     const nextVote = votes.map((v, i) => {
       if (i == index) {
@@ -57,9 +53,7 @@ const App = () => {
     setVote(nextVote);
   };
 
-
-
-
+  // return index in votes array of highest value
   const max = votes.indexOf(Math.max(...votes));
 
   return (
